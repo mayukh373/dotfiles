@@ -1,5 +1,3 @@
--- local on_attach = require("utils.lsp").on_attach
-
 -- Restore last cursor position when reopening a file
 local last_cursor_group = vim.api.nvim_create_augroup("LastCursorGroup", {})
 vim.api.nvim_create_autocmd("BufReadPost", {
@@ -26,26 +24,14 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 	end,
 })
 
--- format on save using efm langserver and configured formatters
--- local lsp_fmt_group = vim.api.nvim_create_augroup("FormatOnSaveGroup", {})
--- vim.api.nvim_create_autocmd("BufWritePre", {
--- 	group = lsp_fmt_group,
--- 	callback = function()
--- 		require("mini.trailspace").trim()
--- 		local efm = vim.lsp.get_clients({ name = "efm" })
--- 		if vim.tbl_isempty(efm) then
--- 			return
--- 		end
--- 		vim.lsp.buf.format({ name = "efm", async = true })
--- 	end,
--- })
-
 -- on attach function shortcuts
--- local lsp_on_attach_group = vim.api.nvim_create_augroup("LspMappings", {})
--- vim.api.nvim_create_autocmd("LspAttach", {
--- 	group = lsp_on_attach_group,
--- 	callback = on_attach,
--- })
+local on_attach = require("utils.lsp").on_attach
+
+local lsp_on_attach_group = vim.api.nvim_create_augroup("LspMappings", {})
+vim.api.nvim_create_autocmd("LspAttach", {
+	group = lsp_on_attach_group,
+	callback = on_attach,
+})
 
 -- custom options for text/markdown files
 -- local markdown_options = vim.api.nvim_create_augroup("MardownOptions", {})

@@ -1,6 +1,3 @@
-vim.g.mapleader = " "
-vim.g.maplocalleader = " "
-
 vim.keymap.set("n", "<leader>rc", "<Cmd>e ~/.config/nvim/init.lua<CR>", { desc = "Edit config" })
 
 vim.keymap.set("n", "j", function()
@@ -12,17 +9,17 @@ end, { expr = true, silent = true, desc = "Up (wrap-aware)" })
 
 -- do stuff without affecting registers
 vim.keymap.set("n", "x", '"_x')
-vim.keymap.set("n", "<Leader>p", '"0p')
-vim.keymap.set("n", "<Leader>P", '"0P')
-vim.keymap.set("v", "<Leader>p", '"0p')
-vim.keymap.set("n", "<Leader>c", '"_c')
-vim.keymap.set("n", "<Leader>C", '"_C')
-vim.keymap.set("v", "<Leader>c", '"_c')
-vim.keymap.set("v", "<Leader>C", '"_C')
-vim.keymap.set("n", "<Leader>d", '"_d')
-vim.keymap.set("n", "<Leader>D", '"_D')
-vim.keymap.set("v", "<Leader>d", '"_d')
-vim.keymap.set("v", "<Leader>D", '"_D')
+-- vim.keymap.set("n", "<Leader>p", '"0p')
+-- vim.keymap.set("n", "<Leader>P", '"0P')
+-- vim.keymap.set("v", "<Leader>p", '"0p')
+-- vim.keymap.set("n", "<Leader>c", '"_c')
+-- vim.keymap.set("n", "<Leader>C", '"_C')
+-- vim.keymap.set("v", "<Leader>c", '"_c')
+-- vim.keymap.set("v", "<Leader>C", '"_C')
+-- vim.keymap.set("n", "<Leader>d", '"_d')
+-- vim.keymap.set("n", "<Leader>D", '"_D')
+-- vim.keymap.set("v", "<Leader>d", '"_d')
+-- vim.keymap.set("v", "<Leader>D", '"_D')
 
 -- increment/decrement
 vim.keymap.set("n", "+", "<C-a>")
@@ -35,14 +32,11 @@ vim.keymap.set("n", "<S-Tab>", ":bprevious<CR>", { desc = "Previous buffer" })
 -- select all
 vim.keymap.set("n", "<C-a>", "gg<S-v>G")
 
--- (?)window actions
-vim.keymap.set("n", "<C-h>", "<C-w>h", { desc = "Move to left window" })
-vim.keymap.set("n", "<C-j>", "<C-w>j", { desc = "Move to bottom window" })
-vim.keymap.set("n", "<C-k>", "<C-w>k", { desc = "Move to top window" })
-vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "Move to right window" })
 vim.keymap.set("n", "<leader>vs", ":vsplit<CR>", { desc = "Split window vertically" })
 vim.keymap.set("n", "<leader>hs", ":split<CR>", { desc = "Split window horizontally" })
 vim.keymap.set("n", "<C-Up>", ":resize +2<CR>", { desc = "Increase window height" })
+vim.keymap.set("n", "<leader>z", "<C-w>_<C-w>|", { desc = "Maximize current split" })
+vim.keymap.set("n", "<leader>=", "<C-w>=", { desc = "Equalize splits" })
 vim.keymap.set("n", "<C-Down>", ":resize -2<CR>", { desc = "Decrease window height" })
 vim.keymap.set("n", "<C-Left>", ":vertical resize -2<CR>", { desc = "Decrease window width" })
 vim.keymap.set("n", "<C-Right>", ":vertical resize +2<CR>", { desc = "Increase window width" })
@@ -62,6 +56,12 @@ vim.keymap.set("n", "J", "mzJ`z", { desc = "Join lines and keep cursor position"
 -- Disable continuations
 vim.keymap.set("n", "<leader>o", "o<Esc>^Da", { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>O", "O<Esc>^Da", { noremap = true, silent = true })
+
+-- Delete all buffers but the current one
+-- Fixme: closes snacks picker list too
+-- vim.api.nvim_create_user_command("BufOnly", "%bd|e#|bd#", {
+-- 	desc = "close all opens buffers but this one",
+-- })
 
 vim.keymap.set("n", "<leader>pa", function()
 	local path = vim.fn.expand("%:p")

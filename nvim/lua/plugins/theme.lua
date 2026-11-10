@@ -1,8 +1,10 @@
 return {
-	"savq/melange-nvim",
+	"sainnhe/gruvbox-material",
 	lazy = false,
 	priority = 1000,
 	config = function()
-		vim.cmd.colorscheme("melange")
+		vim.g.gruvbox_material_enable_italic = true
+		vim.g.gruvbox_material_background = "medium"
+		vim.cmd.colorscheme("gruvbox-material")
 	end,
 }
